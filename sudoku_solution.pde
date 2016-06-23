@@ -1,4 +1,4 @@
-int [] sudo={3, 9, 0, 6, 0, 7, 5, 1, 0, 5, 0, 8, 9, 0, 2, 0, 4, 3, 7, 0, 1, 0, 0, 8, 0, 0, 9, 8, 1, 0, 4, 6, 0, 3, 9, 2, 6, 3, 0, 1, 2, 9, 0, 7, 4, 0, 2, 9, 0, 7, 0, 6, 5, 0, 0, 5, 3, 0, 0, 0, 4, 8, 0, 1, 0, 4, 0, 0, 6, 0, 0, 7, 0, 0, 6, 0, 8, 4, 0, 2, 5};
+
 boolean available[][][] = new boolean[3][10][10];
 boolean solution[][][] = new boolean[10][10][10];
 int solution_count[][] = new int[10][10];
@@ -11,13 +11,15 @@ void setup() {
   textSize(48);
   textAlign(TOP, LEFT);
   colorMode(HSB, 255);
+
   while (need_to_solve) {
-    println("solve_count=",solve_count);
+    println("solve_count=", solve_count);
     need_to_solve = set_state_martrix(solve_count);
     solve_sudoku(solve_count);
-    print_state();
+    //print_state();
     solve_count+=1;
   }
+  save("result.png");
 }
 
 void draw() {
@@ -63,7 +65,7 @@ void solve_sudoku(int solve_count) {
         }
         if (solution_count[i][j]==1) sudo[(i-1)*9+j-1] = temp;
         if (sudo[(i-1)*9+j-1]!=0) {
-          color fill_color = color(solve_count*30, 255, 255);
+          color fill_color = color(solve_count*45, 255, 255);
           fill(fill_color);
           text(sudo[(i-1)*9+j-1], width*(j-1)/9, height*(i)/9);
           available[0][i][temp] = true;
